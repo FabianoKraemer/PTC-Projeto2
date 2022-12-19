@@ -1,6 +1,5 @@
 from enum import Enum
 from protocolo import Subcamada
-#from crc import CRC16
 import crc
 
 # usando como base coisas desenvolvidas nos semestres anteriores
@@ -8,9 +7,8 @@ class Enquadramento(Subcamada):
 
     def __init__(self, serial, timeout):
         Subcamada.__init__(self, serial, timeout)
-        self.dev = serial  # dev: este atributo mantém uma referência à porta serial
-        # Estados possíveis da ME
-        self.Estados = Enum('Estados', 'ocioso init rx esc')
+        self.dev = serial  # dev: este atributo mantém uma referência à porta serial       
+        self.Estados = Enum('Estados', 'ocioso init rx esc') # Estados possíveis da ME
         self.estado = self.Estados.ocioso  # Estado inicial da MEF
         self.buffer = bytearray()  # Buffer que vai armazenar os dados lidos da serial
         self.n_bytes = 0
